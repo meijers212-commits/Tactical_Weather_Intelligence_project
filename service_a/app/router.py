@@ -8,7 +8,7 @@ load_dotenv()
 
 host = os.getenv("SERVIS_B_HOST")
 port = os.getenv("SERVIS_B_PORT")
-print(host,port)
+
 
 router = APIRouter()
 
