@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-service-c
+  labels:
+    app: service-c
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8081
+    name: webC
+  selector:
+    app: service-c

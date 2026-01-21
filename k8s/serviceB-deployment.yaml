@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-b-deploy
+  labels:
+    app: service-b
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: service-b
+  template:
+    metadata:
+      labels:
+        app: service-b
+    spec:
+      containers:
+      - name: nginx
+        image: elazarmeijers/api-service-b:v1
+        ports:
+        - containerPort: 8080
