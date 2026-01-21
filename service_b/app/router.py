@@ -18,6 +18,6 @@ router = APIRouter()
 @router.post("/clean")
 def post(records: Records ):
     data = CleanData.complited_task(records.data)
-    url = f"https://{host}:{port}"
+    url = f"http://{host}:{port}/records"
     x = requests.post(url, json = data)
     return x.json()
