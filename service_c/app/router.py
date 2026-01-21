@@ -14,7 +14,7 @@ def post(records: Records):
 
 
 @router.get("/records")
-def get_records_by_time_or_location(time_or_location):
+def get_records_by_time_or_location(time_or_location):        
     pass
 
 @router.get("/records/count")

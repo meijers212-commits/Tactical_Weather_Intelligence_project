@@ -24,7 +24,7 @@ class Dbinstractot:
     def creat_table(connection:MySQLConnectionAbstract):
         mycursor = connection.cursor()
         mycursor.execute("""
-        CREATE TABLE records_weather (
+        CREATE TABLE IF NOT EXIST records_weather (
                         id INT PRIMARY KEY AUTO_INCREMENT,
                         timestamp DATETIME, 
                         location_name VARCHAR(100),
@@ -36,6 +36,10 @@ class Dbinstractot:
                         humidity INT ,
                         temperature_category VARCHAR(100), 
                         wind_category VARCHAR(100))""")
+        
+    @staticmethod
+    def insert_to_db(data):
+        pass
         
 
    
