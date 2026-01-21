@@ -10,7 +10,7 @@ class Records(BaseModel):
 load_dotenv()
 
 host = os.getenv("SERVIS_C_HOST")
-port = os.getenv("SERVIS_c_PORT")
+port = os.getenv("SERVIS_C_PORT")
 
 router = APIRouter()
 
