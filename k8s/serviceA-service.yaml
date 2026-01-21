@@ -7,6 +7,6 @@ metadata:
 spec:
   ports:
   - port: 5000
-    name: webA
+    name: web-a
   selector:
     app: service-a

@@ -7,6 +7,6 @@ metadata:
 spec:
   ports:
   - port: 8080
-    name: webB
+    name: web-b
   selector:
     app: service-b

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from db import Dbinstractot
-from modols import DataManipulation
+from app.db import Dbinstractot
+from app.modols import DataManipulation
 
 class Records(BaseModel):
     data: list[dict]

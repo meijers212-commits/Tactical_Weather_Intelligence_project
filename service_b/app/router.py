@@ -2,7 +2,7 @@ from fastapi import APIRouter , Body
 from dotenv import load_dotenv
 import os
 from pydantic import BaseModel 
-from modols import CleanData
+from app.modols import CleanData
 import requests
 
 class Records(BaseModel):

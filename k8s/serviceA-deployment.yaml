@@ -16,6 +16,13 @@ spec:
     spec:
       containers:
       - name: service-a-container
-        image: elazarmeijers/api-service-a:v1
+        image: elazarmeijers/api-service-a:v3
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
+        env:
+        - name: SERVIS_B_HOST
+          value: "svc-service-b"
+        - name: SERVIS_B_PORT
+          value: "8080"
+

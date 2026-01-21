@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from modols import GetWeatherData
+from app.modols import GetWeatherData
 import requests
 from dotenv import load_dotenv
 import os

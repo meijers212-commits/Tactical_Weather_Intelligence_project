@@ -20,7 +20,7 @@ class Dbinstractot:
     def get_connection():
         try:
             connection = mysql.connector.connect(
-                host=db_host, user=db_user, database=db_name
+                host=db_host, user=db_user, password=db_password, database=db_name
             )
             return connection
 

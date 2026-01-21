@@ -1,4 +1,4 @@
-from db import Dbinstractot as db
+from app.db import Dbinstractot as db
 
 
 class DataManipulation:

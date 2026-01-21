@@ -16,6 +16,12 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: elazarmeijers/api-service-b:v1
+        image: elazarmeijers/api-service-b:v3
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        env:
+        - name: SERVIS_C_HOST
+          value: "svc-service-c"
+        - name: SERVIS_C_PORT
+          value: "8081"

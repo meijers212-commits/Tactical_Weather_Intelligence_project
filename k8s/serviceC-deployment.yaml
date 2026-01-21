@@ -16,6 +16,16 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: elazarmeijers/api-service-c:v1
+        image: elazarmeijers/api-service-c:v3
+        imagePullPolicy: Always
         ports:
         - containerPort: 8081
+        env:
+        - name: DB_HOST
+          value: "headless-svc-mysql"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: "password"
+        - name: DB_NAME
+          value: "weather_db"

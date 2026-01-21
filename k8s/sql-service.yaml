@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: headless-svc-mySql
+  name: headless-svc-mysql
   labels:
-    app: mySql
+    app: mysql
 spec:
   clusterIP: None
   type: ClusterIP
@@ -11,4 +11,4 @@ spec:
   - port: 3306
     name: websql
   selector:
-    app: mySql
+    app: mysql
