@@ -19,8 +19,8 @@ class CleanData():
     
     @staticmethod
     def convert_df_to_json(df):
-        # convert df to Records list[dict]!!
-        data = Records(data=df)
+        list_df = df.to_dict('records')
+        data = Records(data=list_df)
         return data.model_dump(mode="json")
 
     @staticmethod
