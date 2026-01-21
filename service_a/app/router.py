@@ -20,7 +20,6 @@ router = APIRouter()
 @router.post("/ingest")
 def post(location: str):
     data = Records(data=GetWeatherData.ingest_weather_for_location(location))
-    print(data)
     url = f"http://{host}:{port}/clean"
     x = requests.post(url, json=data.model_dump(mode='json'))
     return x.json()

@@ -2,13 +2,8 @@ from fastapi import APIRouter
 from pydantic import BaseModel 
 
 
-
 class Records(BaseModel):
     data: list[dict]
-
-
-
-
 
 router = APIRouter()
 
