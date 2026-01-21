@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-service-a
+  labels:
+    app: service-a
+spec:
+  ports:
+  - port: 5000
+    name: webA
+  selector:
+    app: service-a
