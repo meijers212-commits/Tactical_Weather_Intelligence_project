@@ -1,47 +1,68 @@
-from fastapi import APIRouter
-from pydantic import BaseModel 
-
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
+from db import Dbinstractot
+from modols import DataManipulation
 
 class Records(BaseModel):
     data: list[dict]
 
+
 router = APIRouter()
+
 
 @router.post("/records")
 def post(records: Records):
-    data1 = records.data
-    return {"hi":"hi from server c"}
+    try:
+
+        data1 = records.data
+        Dbinstractot.get_connection()
+        Dbinstractot.creat_table()
+        Dbinstractot.insert_to_db(data=data1)
+        return {"message": "data inserted succefully"}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/records")
-def get_records_by_time_or_location(time_or_location):        
-    pass
+def get_records_by_time_or_location(time_or_location):
+    try:
+        data = DataManipulation.get_by_time_or_location(time_or_location)
+        return data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.get("/records/count")
 def get_records_number_by_locations():
-    pass
+    try:
+        data = DataManipulation.records_number_by_location()
+        return data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.get("/records/avg-temperature")
 def get_evg_temp_by_locations():
-    pass
+    try:
+        data = DataManipulation.get_evg_temp_by_erea()
+        return data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.get("/records/max-wind")
 def get_max_wind_spid_by_locations():
-    pass
+    try:
+        data = DataManipulation.get_max_wind_by_location()
+        return data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.get("/records/extreme")
 def get_extreme_locations():
-    pass
-
-
-# ==================================================
-# from datetime import datetime
-
-# dt = datetime.fromisoformat(s)
-
-
-# cursor.execute(
-#     "INSERT INTO events (created_at) VALUES (%s)",
-#     (dt,)
-# )
-
+    try:
+        pass
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

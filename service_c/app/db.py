@@ -46,7 +46,7 @@ class Dbinstractot:
             )
 
         except Exception as e:
-            raise e
+            raise {"message": f"cant create db or db alredy exsisted, Error{e}"}
 
     @staticmethod
     def insert_to_db(data):
@@ -82,4 +82,4 @@ class Dbinstractot:
             conn.close()
 
         except Exception as e:
-            raise e
+            raise {"message": f"cant enset data to db sexsesfuly, Error:{e}"}
