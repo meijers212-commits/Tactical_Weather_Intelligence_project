@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from pydantic import BaseModel 
 from modols import CleanData
+import requests
 
 class Records(BaseModel):
     data: list[dict]
@@ -16,8 +17,7 @@ router = APIRouter()
 
 @router.post("/clean")
 def post(records: Records ):
-    # data = CleanData.complited_task(records.data)
-    # url = f"https://{host}:{port}"
-    # x = requests.post(url, json = data)
-    print(records.data)
-    return {"hi":"hi from server b"}
+    data = CleanData.complited_task(records.data)
+    url = f"https://{host}:{port}"
+    x = requests.post(url, json = data)
+    return x.json()
