@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: service-a-container
-        image: elazarmeijers/api-service-a:v3
+        image: elazarmeijers/api-service-a:v4
         imagePullPolicy: Always
         ports:
         - containerPort: 5000

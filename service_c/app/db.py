@@ -49,6 +49,7 @@ class Dbinstractot:
                     )
                     """
                 )
+                connection.commit()
         except Exception as e:
             raise Exception(f"message:cant create db or db alredy exsisted, Error:{e}")
         
