@@ -1,20 +1,23 @@
-from fastapi import APIRouter
-from modols import GetWeatherData
-import requests
+from fastapi import APIRouter , Body
 from dotenv import load_dotenv
-import os 
+import os
+from pydantic import BaseModel 
 from modols import CleanData
+
+class Records(BaseModel):
+    data: list[dict]
 
 load_dotenv()
 
 host = os.getenv("SERVIS_C_HOST")
 port = os.getenv("SERVIS_c_PORT")
-print(host,port)
 
 router = APIRouter()
 
 @router.post("/clean")
-def post(clean):
-    data = CleanData.complited_task(clean)
-    url = f"https://{host}/{port}"
-    x = requests.post(url, json = data)
+def post(records: Records ):
+    # data = CleanData.complited_task(records.data)
+    # url = f"https://{host}:{port}"
+    # x = requests.post(url, json = data)
+    print(records.data)
+    return {"hi":"hi from server b"}

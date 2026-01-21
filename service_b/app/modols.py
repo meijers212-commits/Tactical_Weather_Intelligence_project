@@ -1,12 +1,15 @@
-import pandas as pd 
+import pandas as pd
+from pydantic import BaseModel 
 
-
+class Records(BaseModel):
+    data: list[dict]
+    
 class CleanData():
 
     @staticmethod
     def convert_to_df(data):
         df = pd.DataFrame(data=data)
-        return data
+        return df
 
     @staticmethod
     def Add_important_columns(df):
@@ -16,7 +19,9 @@ class CleanData():
     
     @staticmethod
     def convert_df_to_json(df):
-        return df.to_json()
+        # convert df to Records list[dict]!!
+        data = Records(data=df)
+        return data.model_dump(mode="json")
 
     @staticmethod
     def complited_task(data):

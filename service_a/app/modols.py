@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-
+from fastapi.encoders import jsonable_encoder
 
 
 class GetWeatherData():
@@ -81,9 +81,8 @@ class GetWeatherData():
 
             }
             records.append(record)
-
         return records
 
-    # this triggers the whole pipeline to ingest weather for London and write to mysql
-    # data = ingest_weather_for_location("London")
-    # print(data)
+# this triggers the whole pipeline to ingest weather for London and write to mysql
+# data = GetWeatherData.ingest_weather_for_location("London")
+# print(type(data))
