@@ -13,17 +13,6 @@ if __name__=="__main__":
 
 
 
-# ==================================================
-# from datetime import datetime
-
-# dt = datetime.fromisoformat(s)
-
-
-# cursor.execute(
-#     "INSERT INTO events (created_at) VALUES (%s)",
-#     (dt,)
-# )
-
 
 
     
