@@ -63,6 +63,7 @@ def get_max_wind_spid_by_locations():
 @router.get("/records/extreme")
 def get_extreme_locations():
     try:
-        pass
+        data = DataManipulation.get_extrime_locations()
+        return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
