@@ -16,34 +16,36 @@ class DataManipulation:
             ):
                 time = time_or_location
                 query = "SELECT * FROM records_weather WHERE timestamp = %s"
-                cursor.execute(query, (time))
+                cursor.execute(query, (time,))
                 result = cursor.fetchall()
                 cursor.close()
                 conn.close()
             else:
                 location = time_or_location
                 query = "SELECT * FROM records_weather WHERE location_name = %s "
-                cursor.execute(query, (location))
+                cursor.execute(query, (location,))
                 result = cursor.fetchall()
                 cursor.close()
                 conn.close()
             return result
         except Exception as e:
-            raise {"message": f"cudent get data by tyme/location, Error{e}"}
+            raise Exception(f"message : cudent get data by tyme/location, Error{e}")
 
     @staticmethod
     def records_number_by_location():
         try:
             conn = db.get_connection()
             cursor = conn.cursor(dictionary=True)
-            query = "SELECT location_name, count(*) as record_numbers FROM records_weather GROUPBY location_name"
+            query = """SELECT location_name, COUNT(*) AS record_numbers 
+                    FROM records_weather 
+                    GROUP BY location_name;"""
             cursor.execute(query)
             result = cursor.fetchall()
             cursor.close()
             conn.close()
             return result
         except Exception as e:
-            raise {"message": f"cudet get records by location, Error: {e}"}
+            raise Exception(f"message : cudet get records by location, Error: {e}")
 
     @staticmethod
     def get_evg_temp_by_erea():
@@ -51,7 +53,9 @@ class DataManipulation:
 
             conn = db.get_connection()
             cursor = conn.cursor(dictionary=True)
-            query = "SELECT location_name, evg(temperature) as avg_temp FROM records_weather GROUPBY location_name"
+            query = """SELECT location_name, AVG(temperature) AS avg_temp 
+                    FROM records_weather 
+                    GROUP BY location_name;"""
             cursor.execute(query)
             result = cursor.fetchall()
             cursor.close()
@@ -59,16 +63,43 @@ class DataManipulation:
             return result
 
         except Exception as e:
-            raise {"message": f"codent get evg temp by erea, Error:{e}"}
-
+            raise Exception(f"message : codent get evg temp by erea, Error:{e}")
 
     @staticmethod
     def get_max_wind_by_location():
+        conn = None
+        try:
+            conn = db.get_connection()
+            cursor = conn.cursor(dictionary=True)
+
+            query = """
+                SELECT location_name, MAX(wind_speed) AS max_wind 
+                FROM records_weather 
+                GROUP BY location_name
+            """
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+            cursor.close()
+            return result
+
+        except Exception as e:
+            raise Exception(f"message: couldn't get max wind by area, Error: {e}")
+
+        finally:
+            if conn and conn.is_connected():
+                conn.close()
+
+    @staticmethod
+    def get_extrime_locations():
         try:
 
             conn = db.get_connection()
             cursor = conn.cursor(dictionary=True)
-            query = "SELECT location_name, max(wind_speed) as max_wind FROM records_weather GROUPBY location_name"
+            query = """SELECT location_name FROM records_weather
+                    WHERE (temperature_category = 'hot' AND wind_status = 'calm')
+                    OR (temperature_category = 'cold' AND wind_status = 'windy')"""
             cursor.execute(query)
             result = cursor.fetchall()
             cursor.close()
@@ -76,8 +107,4 @@ class DataManipulation:
             return result
 
         except Exception as e:
-            raise {"message": f"codent get max wind by erea, Error:{e}"}
-# try:
-
-#         except Exception as e:
-#             raise {"message" : f"codent get evg temp by erea, Error:{e}"}
+            raise Exception(f"message: codent get extreme locations, Error:{e}")

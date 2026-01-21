@@ -15,8 +15,8 @@ def post(records: Records):
     try:
 
         data1 = records.data
-        Dbinstractot.get_connection()
-        Dbinstractot.creat_table()
+        conn = Dbinstractot.get_connection()
+        Dbinstractot.creat_table(connection=conn)
         Dbinstractot.insert_to_db(data=data1)
         return {"message": "data inserted succefully"}
 
